@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 18:14:12 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/01/28 18:14:56 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/01/29 22:39:08 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@
 //# include "../libft/libft.h"
 
 # ifndef WIDTH
-#  define WIDTH 1000
+#  define WIDTH 1000 // Ancho de la ventana
 # endif
 
 # ifndef HEIGHT
-#  define HEIGHT 1000
+#  define HEIGHT 1000 // Alto de la ventana
 # endif
 
 # ifndef MAX_ITERATIONS
-#  define MAX_ITERATIONS 100
+#  define MAX_ITERATIONS 100 // Iteraciones máximas en cálculo fractal
 # endif
 
 #endif
