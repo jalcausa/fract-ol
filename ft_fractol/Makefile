@@ -4,15 +4,15 @@ SRCS		= src/main.c src/hooks.c src/fractals.c src/utils.c
 
 OBJS		= ${SRCS:.c=.o}
 
-CC			= gcc
+CC			= cc
 
 INCLUDES	= -I include -I MLX42/include/MLX42
 
-LIBS		= MLX42/libmlx42.a -lglfw -L /Users/${USER}/.brew/opt/glfw/lib/
+LIBS		= MLX42/libmlx42.a -lglfw -lm -ldl -pthread
 
 CFLAGS		= -Wall -Wextra -Werror
 
-RM			= rm -f
+RM			= rm -rf
 
 all:	${NAME}
 
