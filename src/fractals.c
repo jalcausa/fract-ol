@@ -1,27 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   fractals.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/13 14:47:06 by jalcausa          #+#    #+#             */
-/*   Updated: 2024/09/13 18:36:09 by jalcausa         ###   ########.fr       */
+/*   Created: 2025/02/01 18:03:21 by jalcausa          #+#    #+#             */
+/*   Updated: 2025/02/01 18:17:24 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/fractol.h"
 
-/*The bzero() function writes len bytes of value zero 
-(converted to an unsigned char) to the string s. */
-void	ft_bzero(void *s, size_t n)
+int	mandelbrot(t_cn c, int max_iter, t_cn args)
 {
-	size_t	i;
+	t_cn		z;
+	t_cn		z2;
+	int			i;
 
+	(void)args;
+	z.a = 0;
+	z.b = 0;
+	z2.a = 0;
+	z2.b = 0;
 	i = 0;
-	while (i < n)
+	// z2 = z² + c (Mirar fórmula libreta)
+	while (i < max_iter && z2.a + z2.b < 4)
 	{
-		((unsigned char *)s)[i] = 0;
-		++i;
+		z.b = 2 * z.a * z.b + c.b;
+		z.a = z2.a - z2.b + c.a;
+		z2.a = z.a * z.a;
+		z2.b = z.b * z.b;
+		i++;
 	}
+	if (i == max_iter)
+		return (0);
+	return (i);
 }

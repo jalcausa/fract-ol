@@ -6,22 +6,17 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 18:14:12 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/01/31 11:09:33 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/02/01 17:57:35 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# include <math.h>
-# include <stdbool.h>
 # include <stdlib.h>
 # include <stdio.h>
-# include <stdint.h>
-# include <string.h>
 # include <unistd.h>
 # include "../MLX42/include/MLX42/MLX42.h"
-# include "../libft/libft.h"
 
 # ifndef WIDTH
 #  define WIDTH 1000 // Ancho de la ventana
@@ -31,63 +26,49 @@
 #  define HEIGHT 1000 // Alto de la ventana
 # endif
 
-# ifndef MAX_ITERATIONS
-#  define MAX_ITERATIONS 100 // Iteraciones máximas en cálculo fractal
-# endif
-
-// Estructura para gestionar la conexión entre MLX42 y la imagen
-typedef struct s_img
+// Estructura para almacenar un número complejo (a + bi)
+typedef struct s_cn
 {
-	mlx_t		*mlx; // Puntero al contexto MLX42
-	mlx_image_t	*img; // Puntero a la imagen renderizada
-}	t_img;
+	double	a;
+	double	b;
+}	t_cn;
 
-// Estructura para almacenar parámetros de color del fractal
-typedef struct s_color_scheme
+// Estructura para representar las coordenadas de un píxel
+typedef struct s_pixel
 {
-	int	shift; // Desplazamiento de color (efectos dinámicos)
-	int	r_set, g_set, b_set; // Valores base RGB
-	int	hue; // Tono (para esquemas HSV)
-	int	saturation; // Saturación (para esquemas HSV)
-	int	brightness; // Brillo (para esquemas HSV)
-	int	contrast; // Contraste
-	int	c;
 	int	x;
-	int	m; // Variables temporales para cálculo del color
-	int r;
-	int g;
-	int b; // Componentes RGB finales
-	int	palette; // Índice de la paleta de colores
-}	t_color_scheme;
+	int	y;
+}	t_pixel;
 
-// Estructura para contener el estado actual del programa
-typedef struct s_fractol
+// Estructura para las variables globales del sistema
+typedef struct s_var
 {
-	t_img			img; // Contexto MLX42 e imagen
-	char			*name; // Nombre del fractal (mandelbrot / julia)
-	int				x;
-	int				y; // Coordenadas del píxel actual
-	double			m_zi;
-	double			m_zr; // Valores iniciales de z para Mandelbrot (z0 = 0)
-	double			j_ci;
-	double			j_cr; // Parte imaginaria y real de la constante c para Julia
-	double			max_i;
-	double			max_r; // Límites máximos del plano complejo
-	double			min_i;
-	double			min_r; // Límites mínimos del plano complejo
-	double			pi;
-	double			pr; // Paso/paso entre píxeles (delta para escalar coordenadas)
-	int				error; // Código de error
-	int				n; // Número de iteraciones actuales
-	double			zoom_factor; // Factor de zoom
-	t_color_scheme	cs; // Esquema de color actual
-}	t_fractol;
+	mlx_t			*mlx; // Puntero al contexto MLX42
+	mlx_image_t		*img; // Imagen para dibujar el fractal
+	double			max_iters; // Num máximo de iteraciones
+	int				(*form)(t_cn, int, t_cn); //  Puntero a función que calcula si el punto pertenece al fractal
+	double			range; // Rango de valores complejos representados en pantalla
+	t_cn			middle; // Punto central del área representada
+	t_cn			julia; // Parámetro especial para Julia
+	int				mx; // Coordenada x del ratón en pantalla
+	int				my; // Coordenada y del ratón en pantalla
+	int				colors; // Esquema de colores del fractal
+}	t_var;
 
-enum	e_error
-{
-	OK = 0,
-	ARGS_FAIL = 1,
-	MLX_FAIL = 2
-};
+// Hooks
+void	hook(void *param);
+void	my_scrollhook(double xdelta, double ydelta, void *param);
+void	my_curhook(double xpos, double ypos, void *param);
+void	my_keyhook(mlx_key_data_t keydata, void *param);
+
+//Utils
+t_cn	ft_pixel_to_cn(t_var *vars, t_pixel pixel);
+void	ft_print_fractals(t_var *vars);
+double	ft_atof(char *str);
+
+//Fractals
+int		mandelbrot(t_cn c, int max_iter, t_cn args);
+int		burningship(t_cn c, int max_iter, t_cn args);
+int		julia(t_cn z, int max_iter, t_cn args);
 
 #endif

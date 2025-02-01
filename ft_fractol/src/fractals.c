@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractals.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 13:18:44 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/06/14 18:03:17 by aaguiler         ###   ########.fr       */
+/*   Updated: 2025/02/01 18:04:10 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
