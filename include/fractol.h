@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 18:14:12 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/02/01 17:57:35 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/02/01 19:41:49 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 # include "../MLX42/include/MLX42/MLX42.h"
 
 # ifndef WIDTH
-#  define WIDTH 1000 // Ancho de la ventana
+#  define WIDTH 700 // Ancho de la ventana
 # endif
 
 # ifndef HEIGHT
-#  define HEIGHT 1000 // Alto de la ventana
+#  define HEIGHT 700 // Alto de la ventana
 # endif
 
 // Estructura para almacenar un número complejo (a + bi)
