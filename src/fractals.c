@@ -6,7 +6,7 @@
 /*   By: jalcausa <jalcausa@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 18:03:21 by jalcausa          #+#    #+#             */
-/*   Updated: 2025/02/02 16:16:35 by jalcausa         ###   ########.fr       */
+/*   Updated: 2025/02/02 18:11:08 by jalcausa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int	burningship(t_cn c, int max_iter, t_cn args)
 	z2.a = 0;
 	z2.b = 0;
 	i = 0;
+	// Igual que Mandelbrot pero tomando el valor absoluto
 	while (i < max_iter && z2.a + z2.b < 4)
 	{
 		prod = z.a * z.b;
